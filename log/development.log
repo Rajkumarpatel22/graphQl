@@ -1,0 +1,843 @@
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (128.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (86.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreatePosts (20191112103934)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "posts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "description" text, "is_published" boolean, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20191112103934"]]
+  [1m[36mTRANSACTION (109.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-09-05 07:58:53.142272"], ["updated_at", "2022-09-05 07:58:53.142272"]]
+  [1m[36mTRANSACTION (104.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2022-09-05 13:29:10 +0530
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HelloWorldController#index as HTML
+  Rendering layout layouts/hello_world.html.erb
+  Rendering hello_world/index.html.erb within layouts/hello_world
+  Rendered hello_world/index.html.erb within layouts/hello_world (Duration: 56.9ms | Allocations: 9876)
+[Webpacker] Compiling...
+[Webpacker] Compiled all packs in /home/ongraph/Downloads/rails-react-crud-app-master/public/packs
+[Webpacker] Browserslist: caniuse-lite is outdated. Please run:
+npx browserslist@latest --update-db
+
+Why you should do it regularly:
+https://github.com/browserslist/browserslist#browsers-data-updating
+
+  Rendered layout layouts/hello_world.html.erb (Duration: 10118.4ms | Allocations: 13111)
+Completed 200 OK in 10133ms (Views: 10122.5ms | ActiveRecord: 0.0ms | Allocations: 16637)
+
+
+Started GET "/api/v1/posts" for ::1 at 2022-09-05 13:29:20 +0530
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:5:in `index'
+Completed 200 OK in 5ms (Views: 2.0ms | ActiveRecord: 0.3ms | Allocations: 1328)
+
+
+Started POST "/api/v1/posts" for ::1 at 2022-09-05 13:29:28 +0530
+Processing by Api::V1::PostsController#create as */*
+  Parameters: {"title"=>"ff", "description"=>"ssgs", "is_published"=>true, "post"=>{"title"=>"ff", "description"=>"ssgs", "is_published"=>true}}
+Can't verify CSRF token authenticity.
+[31mUnpermitted parameter: :post[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:9:in `create'
+  [1m[36mPost Create (0.4ms)[0m  [1m[32mINSERT INTO "posts" ("title", "description", "is_published", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "ff"], ["description", "ssgs"], ["is_published", 1], ["created_at", "2022-09-05 07:59:28.088046"], ["updated_at", "2022-09-05 07:59:28.088046"]]
+  ↳ app/controllers/api/v1/posts_controller.rb:9:in `create'
+  [1m[36mTRANSACTION (72.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:9:in `create'
+Completed 200 OK in 91ms (Views: 0.6ms | ActiveRecord: 74.9ms | Allocations: 6319)
+
+
+Started GET "/" for ::1 at 2022-09-05 13:29:29 +0530
+Processing by HelloWorldController#index as HTML
+  Rendering layout layouts/hello_world.html.erb
+  Rendering hello_world/index.html.erb within layouts/hello_world
+  Rendered hello_world/index.html.erb within layouts/hello_world (Duration: 0.7ms | Allocations: 387)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/hello_world.html.erb (Duration: 4.5ms | Allocations: 2276)
+Completed 200 OK in 6ms (Views: 5.4ms | ActiveRecord: 0.0ms | Allocations: 2864)
+
+
+Started GET "/api/v1/posts" for ::1 at 2022-09-05 13:29:29 +0530
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:5:in `index'
+Completed 200 OK in 3ms (Views: 1.8ms | ActiveRecord: 0.2ms | Allocations: 1123)
+
+
+Started GET "/api/v1/posts/1" for ::1 at 2022-09-05 13:29:35 +0530
+Processing by Api::V1::PostsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:14:in `show'
+Completed 200 OK in 6ms (Views: 0.5ms | ActiveRecord: 0.4ms | Allocations: 1408)
+
+
+Started GET "/api/v1/posts" for ::1 at 2022-09-05 13:29:36 +0530
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:5:in `index'
+Completed 200 OK in 4ms (Views: 1.9ms | ActiveRecord: 0.1ms | Allocations: 1121)
+
+
+Started POST "/api/v1/posts" for ::1 at 2022-09-05 13:29:46 +0530
+Processing by Api::V1::PostsController#create as */*
+  Parameters: {"title"=>"zczv", "description"=>"xvxvx", "is_published"=>true, "post"=>{"title"=>"zczv", "description"=>"xvxvx", "is_published"=>true}}
+Can't verify CSRF token authenticity.
+[31mUnpermitted parameter: :post[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:9:in `create'
+  [1m[36mPost Create (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "description", "is_published", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "zczv"], ["description", "xvxvx"], ["is_published", 1], ["created_at", "2022-09-05 07:59:46.218326"], ["updated_at", "2022-09-05 07:59:46.218326"]]
+  ↳ app/controllers/api/v1/posts_controller.rb:9:in `create'
+  [1m[36mTRANSACTION (73.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:9:in `create'
+Completed 200 OK in 82ms (Views: 0.5ms | ActiveRecord: 74.2ms | Allocations: 3214)
+
+
+Started GET "/" for ::1 at 2022-09-05 13:29:47 +0530
+Processing by HelloWorldController#index as HTML
+  Rendering layout layouts/hello_world.html.erb
+  Rendering hello_world/index.html.erb within layouts/hello_world
+  Rendered hello_world/index.html.erb within layouts/hello_world (Duration: 0.7ms | Allocations: 378)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/hello_world.html.erb (Duration: 4.9ms | Allocations: 2266)
+Completed 200 OK in 6ms (Views: 5.6ms | ActiveRecord: 0.0ms | Allocations: 2857)
+
+
+Started GET "/api/v1/posts" for ::1 at 2022-09-05 13:29:47 +0530
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:5:in `index'
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.1ms | Allocations: 1211)
+
+
+Started GET "/" for ::1 at 2022-09-05 15:26:48 +0530
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HelloWorldController#index as HTML
+  Rendering layout layouts/hello_world.html.erb
+  Rendering hello_world/index.html.erb within layouts/hello_world
+  Rendered hello_world/index.html.erb within layouts/hello_world (Duration: 10.5ms | Allocations: 5996)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/hello_world.html.erb (Duration: 14.4ms | Allocations: 8031)
+Completed 200 OK in 25ms (Views: 17.7ms | ActiveRecord: 0.0ms | Allocations: 10613)
+
+
+Started GET "/api/v1/posts" for ::1 at 2022-09-05 15:26:49 +0530
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:5:in `index'
+Completed 200 OK in 20ms (Views: 15.4ms | ActiveRecord: 1.9ms | Allocations: 4908)
+
+
+Started GET "/" for ::1 at 2022-09-05 15:27:50 +0530
+Processing by HelloWorldController#index as HTML
+  Rendering layout layouts/hello_world.html.erb
+  Rendering hello_world/index.html.erb within layouts/hello_world
+  Rendered hello_world/index.html.erb within layouts/hello_world (Duration: 0.7ms | Allocations: 387)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/hello_world.html.erb (Duration: 4.3ms | Allocations: 2276)
+Completed 200 OK in 6ms (Views: 4.8ms | ActiveRecord: 0.0ms | Allocations: 2851)
+
+
+Started GET "/api/v1/posts" for ::1 at 2022-09-05 15:27:50 +0530
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:5:in `index'
+Completed 200 OK in 3ms (Views: 2.1ms | ActiveRecord: 0.2ms | Allocations: 1221)
+
+
+Started GET "/" for ::1 at 2022-09-05 15:28:24 +0530
+Processing by HelloWorldController#index as HTML
+  Rendering layout layouts/hello_world.html.erb
+  Rendering hello_world/index.html.erb within layouts/hello_world
+  Rendered hello_world/index.html.erb within layouts/hello_world (Duration: 1.3ms | Allocations: 474)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/hello_world.html.erb (Duration: 5.7ms | Allocations: 2491)
+Completed 200 OK in 9ms (Views: 6.9ms | ActiveRecord: 0.0ms | Allocations: 3517)
+
+
+Started GET "/api/v1/posts" for ::1 at 2022-09-05 15:28:24 +0530
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:5:in `index'
+Completed 200 OK in 4ms (Views: 2.7ms | ActiveRecord: 0.2ms | Allocations: 1211)
+
+
+Started GET "/api/v1/posts/1" for ::1 at 2022-09-05 15:28:28 +0530
+Processing by Api::V1::PostsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:14:in `show'
+Completed 200 OK in 10ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 3068)
+
+
+Started GET "/api/v1/posts" for ::1 at 2022-09-05 15:28:29 +0530
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:5:in `index'
+Completed 200 OK in 4ms (Views: 2.6ms | ActiveRecord: 0.2ms | Allocations: 1199)
+
+
+Started GET "/posts/new" for ::1 at 2022-09-05 15:28:36 +0530
+Processing by HelloWorldController#index as HTML
+  Parameters: {"id"=>"new"}
+  Rendering layout layouts/hello_world.html.erb
+  Rendering hello_world/index.html.erb within layouts/hello_world
+  Rendered hello_world/index.html.erb within layouts/hello_world (Duration: 1.1ms | Allocations: 388)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/hello_world.html.erb (Duration: 5.9ms | Allocations: 2277)
+Completed 200 OK in 8ms (Views: 6.9ms | ActiveRecord: 0.0ms | Allocations: 2860)
+
+
+Started GET "/api/v1/posts" for ::1 at 2022-09-05 15:28:37 +0530
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:5:in `index'
+Completed 200 OK in 4ms (Views: 2.8ms | ActiveRecord: 0.1ms | Allocations: 1191)
+
+
+Started GET "/" for ::1 at 2022-09-05 15:30:45 +0530
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HelloWorldController#index as HTML
+  Rendering layout layouts/hello_world.html.erb
+  Rendering hello_world/index.html.erb within layouts/hello_world
+  Rendered hello_world/index.html.erb within layouts/hello_world (Duration: 10.2ms | Allocations: 5995)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/hello_world.html.erb (Duration: 14.7ms | Allocations: 8030)
+Completed 200 OK in 25ms (Views: 16.7ms | ActiveRecord: 0.0ms | Allocations: 10608)
+
+
+Started GET "/api/v1/posts" for ::1 at 2022-09-05 15:30:45 +0530
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:5:in `index'
+Completed 200 OK in 15ms (Views: 10.0ms | ActiveRecord: 1.4ms | Allocations: 4946)
+
+
+Started GET "/" for ::1 at 2022-09-05 15:30:46 +0530
+Processing by HelloWorldController#index as HTML
+  Rendering layout layouts/hello_world.html.erb
+  Rendering hello_world/index.html.erb within layouts/hello_world
+  Rendered hello_world/index.html.erb within layouts/hello_world (Duration: 0.6ms | Allocations: 387)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/hello_world.html.erb (Duration: 3.6ms | Allocations: 2276)
+Completed 200 OK in 5ms (Views: 4.0ms | ActiveRecord: 0.0ms | Allocations: 2853)
+
+
+Started GET "/api/v1/posts" for ::1 at 2022-09-05 15:30:46 +0530
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:5:in `index'
+Completed 200 OK in 3ms (Views: 2.0ms | ActiveRecord: 0.1ms | Allocations: 1209)
+
+
+Started GET "/" for ::1 at 2022-09-05 15:47:42 +0530
+Processing by HelloWorldController#index as HTML
+  Rendering layout layouts/hello_world.html.erb
+  Rendering hello_world/index.html.erb within layouts/hello_world
+  Rendered hello_world/index.html.erb within layouts/hello_world (Duration: 0.9ms | Allocations: 378)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/hello_world.html.erb (Duration: 5.4ms | Allocations: 2267)
+Completed 200 OK in 7ms (Views: 5.9ms | Allocations: 2855)
+
+
+Started GET "/api/v1/posts" for ::1 at 2022-09-05 15:47:42 +0530
+Processing by Api::V1::PostsController#index as */*
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:5:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:5:in `index'
+Completed 200 OK in 6ms (Views: 4.5ms | ActiveRecord: 1.0ms | Allocations: 1806)
+
+
+Started GET "/" for ::1 at 2022-09-05 15:47:43 +0530
+Processing by HelloWorldController#index as HTML
+  Rendering layout layouts/hello_world.html.erb
+  Rendering hello_world/index.html.erb within layouts/hello_world
+  Rendered hello_world/index.html.erb within layouts/hello_world (Duration: 1.3ms | Allocations: 378)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/hello_world.html.erb (Duration: 5.6ms | Allocations: 2266)
+Completed 200 OK in 7ms (Views: 6.4ms | ActiveRecord: 0.0ms | Allocations: 2835)
+
+
+Started GET "/api/v1/posts" for ::1 at 2022-09-05 15:47:43 +0530
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:5:in `index'
+Completed 200 OK in 3ms (Views: 2.7ms | ActiveRecord: 0.1ms | Allocations: 1193)
+
+
+Started GET "/api/v1/posts/1" for ::1 at 2022-09-05 15:47:47 +0530
+Processing by Api::V1::PostsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:14:in `show'
+Completed 200 OK in 11ms (Views: 0.5ms | ActiveRecord: 0.3ms | Allocations: 3041)
+
+
+Started PUT "/api/v1/posts/1" for ::1 at 2022-09-05 15:47:48 +0530
+Processing by Api::V1::PostsController#update as */*
+  Parameters: {"title"=>"ff", "description"=>"ssgs", "is_published"=>true, "id"=>"1", "created_at"=>"2022-09-05T07:59:28.088Z", "updated_at"=>"2022-09-05T07:59:28.088Z", "post"=>{"id"=>"1", "title"=>"ff", "description"=>"ssgs", "is_published"=>true, "created_at"=>"2022-09-05T07:59:28.088Z", "updated_at"=>"2022-09-05T07:59:28.088Z"}}
+Can't verify CSRF token authenticity.
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:19:in `update'
+[31mUnpermitted parameters: :id, :created_at, :updated_at, :post[0m
+Completed 200 OK in 5ms (Views: 0.3ms | ActiveRecord: 0.3ms | Allocations: 1292)
+
+
+Started GET "/" for ::1 at 2022-09-05 15:47:50 +0530
+Processing by HelloWorldController#index as HTML
+  Rendering layout layouts/hello_world.html.erb
+  Rendering hello_world/index.html.erb within layouts/hello_world
+  Rendered hello_world/index.html.erb within layouts/hello_world (Duration: 0.8ms | Allocations: 378)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/hello_world.html.erb (Duration: 6.9ms | Allocations: 2267)
+Completed 200 OK in 9ms (Views: 7.7ms | ActiveRecord: 0.0ms | Allocations: 2837)
+
+
+Started GET "/api/v1/posts" for ::1 at 2022-09-05 15:47:50 +0530
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:5:in `index'
+Completed 200 OK in 3ms (Views: 1.6ms | ActiveRecord: 0.1ms | Allocations: 1213)
+
+
+Started GET "/api/v1/posts/2" for ::1 at 2022-09-05 15:47:52 +0530
+Processing by Api::V1::PostsController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:14:in `show'
+Completed 200 OK in 4ms (Views: 0.7ms | ActiveRecord: 0.3ms | Allocations: 956)
+
+
+Started PUT "/api/v1/posts/2" for ::1 at 2022-09-05 15:47:54 +0530
+Processing by Api::V1::PostsController#update as */*
+  Parameters: {"title"=>"zczv", "description"=>"xvxvx", "is_published"=>"trubcbe", "id"=>"2", "created_at"=>"2022-09-05T07:59:46.218Z", "updated_at"=>"2022-09-05T07:59:46.218Z", "post"=>{"id"=>"2", "title"=>"zczv", "description"=>"xvxvx", "is_published"=>"trubcbe", "created_at"=>"2022-09-05T07:59:46.218Z", "updated_at"=>"2022-09-05T07:59:46.218Z"}}
+Can't verify CSRF token authenticity.
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:19:in `update'
+[31mUnpermitted parameters: :id, :created_at, :updated_at, :post[0m
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 1167)
+
+
+Started GET "/" for ::1 at 2022-09-05 15:47:55 +0530
+Processing by HelloWorldController#index as HTML
+  Rendering layout layouts/hello_world.html.erb
+  Rendering hello_world/index.html.erb within layouts/hello_world
+  Rendered hello_world/index.html.erb within layouts/hello_world (Duration: 0.6ms | Allocations: 378)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/hello_world.html.erb (Duration: 5.2ms | Allocations: 2266)
+Completed 200 OK in 7ms (Views: 6.0ms | ActiveRecord: 0.0ms | Allocations: 2839)
+
+
+Started GET "/api/v1/posts" for ::1 at 2022-09-05 15:47:55 +0530
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:5:in `index'
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.1ms | Allocations: 1199)
+
+
+Started DELETE "/api/v1/posts/2" for ::1 at 2022-09-05 15:47:58 +0530
+Processing by Api::V1::PostsController#destroy as */*
+  Parameters: {"id"=>"2"}
+Can't verify CSRF token authenticity.
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:25:in `destroy'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:25:in `destroy'
+  [1m[36mPost Destroy (0.3ms)[0m  [1m[31mDELETE FROM "posts" WHERE "posts"."id" = ?[0m  [["id", 2]]
+  ↳ app/controllers/api/v1/posts_controller.rb:25:in `destroy'
+  [1m[36mTRANSACTION (64.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:25:in `destroy'
+Completed 200 OK in 72ms (ActiveRecord: 64.8ms | Allocations: 3198)
+
+
+Started GET "/api/v1/posts" for ::1 at 2022-09-05 15:48:00 +0530
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:5:in `index'
+Completed 200 OK in 4ms (Views: 2.9ms | ActiveRecord: 0.2ms | Allocations: 1083)
+
+
+Started GET "/" for ::1 at 2022-09-05 15:48:01 +0530
+Processing by HelloWorldController#index as HTML
+  Rendering layout layouts/hello_world.html.erb
+  Rendering hello_world/index.html.erb within layouts/hello_world
+  Rendered hello_world/index.html.erb within layouts/hello_world (Duration: 1.1ms | Allocations: 378)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/hello_world.html.erb (Duration: 5.7ms | Allocations: 2266)
+Completed 200 OK in 8ms (Views: 6.4ms | ActiveRecord: 0.0ms | Allocations: 2837)
+
+
+Started GET "/api/v1/posts" for ::1 at 2022-09-05 15:48:01 +0530
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:5:in `index'
+Completed 200 OK in 3ms (Views: 2.1ms | ActiveRecord: 0.1ms | Allocations: 1078)
+
+
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Started POST "/graphql" for ::1 at 2022-09-05 16:46:52 +0530
+  
+NameError (uninitialized constant GraphiQL):
+  
+config/routes.rb:3:in `block in <main>'
+config/routes.rb:1:in `<main>'
+Started POST "/graphql" for ::1 at 2022-09-05 16:47:20 +0530
+Processing by GraphqlController#execute as */*
+Can't verify CSRF token authenticity.
+uninitialized constant GraphqlController::RailsReactJsCrudAppSchema
+/home/ongraph/Documents/rails-react-graphQl-app/app/controllers/graphql_controller.rb:15:in `execute'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_controller/metal/basic_implicit_render.rb:6:in `send_action'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/abstract_controller/base.rb:228:in `process_action'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_controller/metal/rendering.rb:30:in `process_action'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/abstract_controller/callbacks.rb:42:in `block in process_action'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/callbacks.rb:117:in `block in run_callbacks'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actiontext-6.1.6.1/lib/action_text/rendering.rb:20:in `with_renderer'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actiontext-6.1.6.1/lib/action_text/engine.rb:59:in `block (4 levels) in <class:Engine>'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/callbacks.rb:126:in `instance_exec'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/callbacks.rb:126:in `block in run_callbacks'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/callbacks.rb:137:in `run_callbacks'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/abstract_controller/callbacks.rb:41:in `process_action'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_controller/metal/rescue.rb:22:in `process_action'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/notifications.rb:203:in `block in instrument'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/notifications/instrumenter.rb:24:in `instrument'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/notifications.rb:203:in `instrument'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_controller/metal/instrumentation.rb:33:in `process_action'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_controller/metal/params_wrapper.rb:249:in `process_action'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activerecord-6.1.6.1/lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/abstract_controller/base.rb:165:in `process'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionview-6.1.6.1/lib/action_view/rendering.rb:39:in `process'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_controller/metal.rb:190:in `dispatch'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_controller/metal.rb:254:in `dispatch'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/routing/route_set.rb:33:in `serve'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/journey/router.rb:50:in `block in serve'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/journey/router.rb:32:in `each'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/journey/router.rb:32:in `serve'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/routing/route_set.rb:842:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/rack-2.2.4/lib/rack/tempfile_reaper.rb:15:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/rack-2.2.4/lib/rack/etag.rb:27:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/rack-2.2.4/lib/rack/conditional_get.rb:40:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/rack-2.2.4/lib/rack/head.rb:12:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/http/permissions_policy.rb:22:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/http/content_security_policy.rb:19:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/rack-2.2.4/lib/rack/session/abstract/id.rb:266:in `context'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/rack-2.2.4/lib/rack/session/abstract/id.rb:260:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/cookies.rb:689:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activerecord-6.1.6.1/lib/active_record/migration.rb:601:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/callbacks.rb:98:in `run_callbacks'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/executor.rb:14:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/web-console-4.2.0/lib/web_console/middleware.rb:132:in `call_app'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/web-console-4.2.0/lib/web_console/middleware.rb:28:in `block in call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/web-console-4.2.0/lib/web_console/middleware.rb:17:in `catch'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/web-console-4.2.0/lib/web_console/middleware.rb:17:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/railties-6.1.6.1/lib/rails/rack/logger.rb:37:in `call_app'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/railties-6.1.6.1/lib/rails/rack/logger.rb:26:in `block in call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/tagged_logging.rb:99:in `block in tagged'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/tagged_logging.rb:37:in `tagged'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/tagged_logging.rb:99:in `tagged'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/railties-6.1.6.1/lib/rails/rack/logger.rb:26:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/sprockets-rails-3.4.2/lib/sprockets/rails/quiet_assets.rb:13:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/request_id.rb:26:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/rack-2.2.4/lib/rack/method_override.rb:24:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/rack-2.2.4/lib/rack/runtime.rb:22:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/executor.rb:14:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/static.rb:24:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/rack-2.2.4/lib/rack/sendfile.rb:110:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/host_authorization.rb:148:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/webpacker-4.3.0/lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/rack-proxy-0.7.2/lib/rack/proxy.rb:67:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/railties-6.1.6.1/lib/rails/engine.rb:539:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/puma-5.6.5/lib/puma/configuration.rb:252:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/puma-5.6.5/lib/puma/request.rb:77:in `block in handle_request'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/puma-5.6.5/lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/puma-5.6.5/lib/puma/request.rb:76:in `handle_request'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/puma-5.6.5/lib/puma/server.rb:443:in `process_client'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/puma-5.6.5/lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Completed 500 Internal Server Error in 11ms (Views: 1.5ms | Allocations: 3115)
+
+
+Started POST "/graphql" for ::1 at 2022-09-05 16:57:01 +0530
+Processing by GraphqlController#execute as */*
+  Parameters: {"query"=>"query  {\n posts {\n    id\n    title\n  }\n}", "graphql"=>{"query"=>"query  {\n posts {\n    id\n    title\n  }\n}"}}
+Can't verify CSRF token authenticity.
+uninitialized constant GraphqlController::RailsReactJsCrudAppSchema
+/home/ongraph/Documents/rails-react-graphQl-app/app/controllers/graphql_controller.rb:15:in `execute'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_controller/metal/basic_implicit_render.rb:6:in `send_action'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/abstract_controller/base.rb:228:in `process_action'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_controller/metal/rendering.rb:30:in `process_action'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/abstract_controller/callbacks.rb:42:in `block in process_action'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/callbacks.rb:117:in `block in run_callbacks'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actiontext-6.1.6.1/lib/action_text/rendering.rb:20:in `with_renderer'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actiontext-6.1.6.1/lib/action_text/engine.rb:59:in `block (4 levels) in <class:Engine>'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/callbacks.rb:126:in `instance_exec'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/callbacks.rb:126:in `block in run_callbacks'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/callbacks.rb:137:in `run_callbacks'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/abstract_controller/callbacks.rb:41:in `process_action'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_controller/metal/rescue.rb:22:in `process_action'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/notifications.rb:203:in `block in instrument'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/notifications/instrumenter.rb:24:in `instrument'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/notifications.rb:203:in `instrument'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_controller/metal/instrumentation.rb:33:in `process_action'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_controller/metal/params_wrapper.rb:249:in `process_action'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activerecord-6.1.6.1/lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/abstract_controller/base.rb:165:in `process'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionview-6.1.6.1/lib/action_view/rendering.rb:39:in `process'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_controller/metal.rb:190:in `dispatch'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_controller/metal.rb:254:in `dispatch'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/routing/route_set.rb:33:in `serve'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/journey/router.rb:50:in `block in serve'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/journey/router.rb:32:in `each'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/journey/router.rb:32:in `serve'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/routing/route_set.rb:842:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/rack-2.2.4/lib/rack/tempfile_reaper.rb:15:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/rack-2.2.4/lib/rack/etag.rb:27:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/rack-2.2.4/lib/rack/conditional_get.rb:40:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/rack-2.2.4/lib/rack/head.rb:12:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/http/permissions_policy.rb:22:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/http/content_security_policy.rb:19:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/rack-2.2.4/lib/rack/session/abstract/id.rb:266:in `context'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/rack-2.2.4/lib/rack/session/abstract/id.rb:260:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/cookies.rb:689:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activerecord-6.1.6.1/lib/active_record/migration.rb:601:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/callbacks.rb:98:in `run_callbacks'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/executor.rb:14:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/web-console-4.2.0/lib/web_console/middleware.rb:132:in `call_app'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/web-console-4.2.0/lib/web_console/middleware.rb:28:in `block in call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/web-console-4.2.0/lib/web_console/middleware.rb:17:in `catch'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/web-console-4.2.0/lib/web_console/middleware.rb:17:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/railties-6.1.6.1/lib/rails/rack/logger.rb:37:in `call_app'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/railties-6.1.6.1/lib/rails/rack/logger.rb:26:in `block in call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/tagged_logging.rb:99:in `block in tagged'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/tagged_logging.rb:37:in `tagged'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/tagged_logging.rb:99:in `tagged'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/railties-6.1.6.1/lib/rails/rack/logger.rb:26:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/sprockets-rails-3.4.2/lib/sprockets/rails/quiet_assets.rb:13:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/request_id.rb:26:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/rack-2.2.4/lib/rack/method_override.rb:24:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/rack-2.2.4/lib/rack/runtime.rb:22:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/executor.rb:14:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/static.rb:24:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/rack-2.2.4/lib/rack/sendfile.rb:110:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/host_authorization.rb:148:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/webpacker-4.3.0/lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/rack-proxy-0.7.2/lib/rack/proxy.rb:67:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/railties-6.1.6.1/lib/rails/engine.rb:539:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/puma-5.6.5/lib/puma/configuration.rb:252:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/puma-5.6.5/lib/puma/request.rb:77:in `block in handle_request'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/puma-5.6.5/lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/puma-5.6.5/lib/puma/request.rb:76:in `handle_request'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/puma-5.6.5/lib/puma/server.rb:443:in `process_client'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/puma-5.6.5/lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Completed 500 Internal Server Error in 7ms (Views: 0.8ms | Allocations: 2982)
+
+
+Started POST "/graphql" for ::1 at 2022-09-05 16:58:18 +0530
+Processing by GraphqlController#execute as */*
+  Parameters: {"query"=>"query  {\n posts {\n    id\n    title\n  }\n}", "graphql"=>{"query"=>"query  {\n posts {\n    id\n    title\n  }\n}"}}
+Can't verify CSRF token authenticity.
+Completed 422 Unprocessable Entity in 1ms (Allocations: 423)
+
+
+  
+ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticityToken):
+  
+actionpack (6.1.6.1) lib/action_controller/metal/request_forgery_protection.rb:211:in `handle_unverified_request'
+actionpack (6.1.6.1) lib/action_controller/metal/request_forgery_protection.rb:243:in `handle_unverified_request'
+actionpack (6.1.6.1) lib/action_controller/metal/request_forgery_protection.rb:238:in `verify_authenticity_token'
+activesupport (6.1.6.1) lib/active_support/callbacks.rb:427:in `block in make_lambda'
+activesupport (6.1.6.1) lib/active_support/callbacks.rb:198:in `block (2 levels) in halting'
+actionpack (6.1.6.1) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (6.1.6.1) lib/active_support/callbacks.rb:199:in `block in halting'
+activesupport (6.1.6.1) lib/active_support/callbacks.rb:512:in `block in invoke_before'
+activesupport (6.1.6.1) lib/active_support/callbacks.rb:512:in `each'
+activesupport (6.1.6.1) lib/active_support/callbacks.rb:512:in `invoke_before'
+activesupport (6.1.6.1) lib/active_support/callbacks.rb:115:in `block in run_callbacks'
+activesupport (6.1.6.1) lib/active_support/callbacks.rb:137:in `run_callbacks'
+actionpack (6.1.6.1) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (6.1.6.1) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (6.1.6.1) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (6.1.6.1) lib/active_support/notifications.rb:203:in `block in instrument'
+activesupport (6.1.6.1) lib/active_support/notifications/instrumenter.rb:24:in `instrument'
+activesupport (6.1.6.1) lib/active_support/notifications.rb:203:in `instrument'
+actionpack (6.1.6.1) lib/action_controller/metal/instrumentation.rb:33:in `process_action'
+actionpack (6.1.6.1) lib/action_controller/metal/params_wrapper.rb:249:in `process_action'
+activerecord (6.1.6.1) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (6.1.6.1) lib/abstract_controller/base.rb:165:in `process'
+actionview (6.1.6.1) lib/action_view/rendering.rb:39:in `process'
+actionpack (6.1.6.1) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.6.1) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.1.6.1) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.1.6.1) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.1.6.1) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (6.1.6.1) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.6.1) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.6.1) lib/action_dispatch/routing/route_set.rb:842:in `call'
+rack (2.2.4) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.4) lib/rack/etag.rb:27:in `call'
+rack (2.2.4) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.4) lib/rack/head.rb:12:in `call'
+actionpack (6.1.6.1) lib/action_dispatch/http/permissions_policy.rb:22:in `call'
+actionpack (6.1.6.1) lib/action_dispatch/http/content_security_policy.rb:19:in `call'
+rack (2.2.4) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.4) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (6.1.6.1) lib/action_dispatch/middleware/cookies.rb:689:in `call'
+activerecord (6.1.6.1) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.6.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.6.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.6.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.6.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.6.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.6.1) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.2.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.1.6.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.6.1) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.6.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.6.1) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.6.1) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.6.1) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.6.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.1.6.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.6.1) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.4) lib/rack/method_override.rb:24:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.6.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.6.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.6.1) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.6.1) lib/action_dispatch/middleware/host_authorization.rb:148:in `call'
+webpacker (4.3.0) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.7.2) lib/rack/proxy.rb:67:in `call'
+railties (6.1.6.1) lib/rails/engine.rb:539:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started POST "/graphql" for ::1 at 2022-09-05 16:58:52 +0530
+Processing by GraphqlController#execute as */*
+  Parameters: {"query"=>"query  {\n posts {\n    id\n    title\n  }\n}", "graphql"=>{"query"=>"query  {\n posts {\n    id\n    title\n  }\n}"}}
+Can't verify CSRF token authenticity.
+uninitialized constant GraphqlController::RailsReactJsCrudAppSchema
+/home/ongraph/Documents/rails-react-graphQl-app/app/controllers/graphql_controller.rb:15:in `execute'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_controller/metal/basic_implicit_render.rb:6:in `send_action'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/abstract_controller/base.rb:228:in `process_action'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_controller/metal/rendering.rb:30:in `process_action'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/abstract_controller/callbacks.rb:42:in `block in process_action'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/callbacks.rb:117:in `block in run_callbacks'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actiontext-6.1.6.1/lib/action_text/rendering.rb:20:in `with_renderer'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actiontext-6.1.6.1/lib/action_text/engine.rb:59:in `block (4 levels) in <class:Engine>'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/callbacks.rb:126:in `instance_exec'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/callbacks.rb:126:in `block in run_callbacks'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/callbacks.rb:137:in `run_callbacks'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/abstract_controller/callbacks.rb:41:in `process_action'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_controller/metal/rescue.rb:22:in `process_action'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/notifications.rb:203:in `block in instrument'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/notifications/instrumenter.rb:24:in `instrument'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/notifications.rb:203:in `instrument'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_controller/metal/instrumentation.rb:33:in `process_action'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_controller/metal/params_wrapper.rb:249:in `process_action'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activerecord-6.1.6.1/lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/abstract_controller/base.rb:165:in `process'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionview-6.1.6.1/lib/action_view/rendering.rb:39:in `process'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_controller/metal.rb:190:in `dispatch'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_controller/metal.rb:254:in `dispatch'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/routing/route_set.rb:33:in `serve'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/journey/router.rb:50:in `block in serve'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/journey/router.rb:32:in `each'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/journey/router.rb:32:in `serve'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/routing/route_set.rb:842:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/rack-2.2.4/lib/rack/tempfile_reaper.rb:15:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/rack-2.2.4/lib/rack/etag.rb:27:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/rack-2.2.4/lib/rack/conditional_get.rb:40:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/rack-2.2.4/lib/rack/head.rb:12:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/http/permissions_policy.rb:22:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/http/content_security_policy.rb:19:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/rack-2.2.4/lib/rack/session/abstract/id.rb:266:in `context'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/rack-2.2.4/lib/rack/session/abstract/id.rb:260:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/cookies.rb:689:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activerecord-6.1.6.1/lib/active_record/migration.rb:601:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/callbacks.rb:98:in `run_callbacks'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/executor.rb:14:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/web-console-4.2.0/lib/web_console/middleware.rb:132:in `call_app'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/web-console-4.2.0/lib/web_console/middleware.rb:28:in `block in call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/web-console-4.2.0/lib/web_console/middleware.rb:17:in `catch'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/web-console-4.2.0/lib/web_console/middleware.rb:17:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/railties-6.1.6.1/lib/rails/rack/logger.rb:37:in `call_app'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/railties-6.1.6.1/lib/rails/rack/logger.rb:26:in `block in call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/tagged_logging.rb:99:in `block in tagged'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/tagged_logging.rb:37:in `tagged'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/tagged_logging.rb:99:in `tagged'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/railties-6.1.6.1/lib/rails/rack/logger.rb:26:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/sprockets-rails-3.4.2/lib/sprockets/rails/quiet_assets.rb:13:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/request_id.rb:26:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/rack-2.2.4/lib/rack/method_override.rb:24:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/rack-2.2.4/lib/rack/runtime.rb:22:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/activesupport-6.1.6.1/lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/executor.rb:14:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/static.rb:24:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/rack-2.2.4/lib/rack/sendfile.rb:110:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/actionpack-6.1.6.1/lib/action_dispatch/middleware/host_authorization.rb:148:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/webpacker-4.3.0/lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/rack-proxy-0.7.2/lib/rack/proxy.rb:67:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/railties-6.1.6.1/lib/rails/engine.rb:539:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/puma-5.6.5/lib/puma/configuration.rb:252:in `call'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/puma-5.6.5/lib/puma/request.rb:77:in `block in handle_request'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/puma-5.6.5/lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/puma-5.6.5/lib/puma/request.rb:76:in `handle_request'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/puma-5.6.5/lib/puma/server.rb:443:in `process_client'
+/home/ongraph/.rbenv/versions/2.7.5/lib/ruby/gems/2.7.0/gems/puma-5.6.5/lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Completed 500 Internal Server Error in 9ms (Views: 0.8ms | Allocations: 3028)
+
+
+Started GET "/" for ::1 at 2022-09-05 17:03:18 +0530
+Processing by HelloWorldController#index as HTML
+  Rendering layout layouts/hello_world.html.erb
+  Rendering hello_world/index.html.erb within layouts/hello_world
+  Rendered hello_world/index.html.erb within layouts/hello_world (Duration: 1.2ms | Allocations: 404)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/hello_world.html.erb (Duration: 6.3ms | Allocations: 2303)
+Completed 200 OK in 8ms (Views: 7.5ms | Allocations: 3063)
+
+
+Started GET "/api/v1/posts" for ::1 at 2022-09-05 17:03:18 +0530
+Processing by Api::V1::PostsController#index as */*
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:5:in `index'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:5:in `index'
+Completed 200 OK in 22ms (Views: 19.4ms | ActiveRecord: 0.8ms | Allocations: 4548)
+
+
+Started GET "/api/v1/posts/1" for ::1 at 2022-09-05 17:03:20 +0530
+Processing by Api::V1::PostsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:14:in `show'
+Completed 200 OK in 5ms (Views: 0.5ms | ActiveRecord: 0.3ms | Allocations: 1127)
+
+
+Started GET "/api/v1/posts" for ::1 at 2022-09-05 17:03:22 +0530
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:5:in `index'
+Completed 200 OK in 3ms (Views: 2.0ms | ActiveRecord: 0.2ms | Allocations: 1088)
+
+
+Started POST "/api/v1/posts" for ::1 at 2022-09-05 17:03:28 +0530
+Processing by Api::V1::PostsController#create as */*
+  Parameters: {"title"=>"vsv", "description"=>"vvssv", "is_published"=>true, "post"=>{"title"=>"vsv", "description"=>"vvssv", "is_published"=>true}}
+Can't verify CSRF token authenticity.
+[31mUnpermitted parameter: :post[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:9:in `create'
+  [1m[36mPost Create (0.8ms)[0m  [1m[32mINSERT INTO "posts" ("title", "description", "is_published", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "vsv"], ["description", "vvssv"], ["is_published", 1], ["created_at", "2022-09-05 11:33:28.517797"], ["updated_at", "2022-09-05 11:33:28.517797"]]
+  ↳ app/controllers/api/v1/posts_controller.rb:9:in `create'
+  [1m[36mTRANSACTION (238.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:9:in `create'
+Completed 200 OK in 246ms (Views: 0.3ms | ActiveRecord: 239.7ms | Allocations: 3416)
+
+
+Started GET "/" for ::1 at 2022-09-05 17:03:31 +0530
+Processing by HelloWorldController#index as HTML
+  Rendering layout layouts/hello_world.html.erb
+  Rendering hello_world/index.html.erb within layouts/hello_world
+  Rendered hello_world/index.html.erb within layouts/hello_world (Duration: 1.5ms | Allocations: 379)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/hello_world.html.erb (Duration: 9.3ms | Allocations: 2267)
+Completed 200 OK in 17ms (Views: 10.2ms | ActiveRecord: 0.0ms | Allocations: 2848)
+
+
+Started GET "/api/v1/posts" for ::1 at 2022-09-05 17:03:31 +0530
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:5:in `index'
+Completed 200 OK in 3ms (Views: 1.6ms | ActiveRecord: 0.1ms | Allocations: 1197)
+
+
+Started GET "/" for ::1 at 2022-09-05 17:33:15 +0530
+Processing by HelloWorldController#index as HTML
+  Rendering layout layouts/hello_world.html.erb
+  Rendering hello_world/index.html.erb within layouts/hello_world
+  Rendered hello_world/index.html.erb within layouts/hello_world (Duration: 0.9ms | Allocations: 378)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/hello_world.html.erb (Duration: 4.6ms | Allocations: 2266)
+Completed 200 OK in 6ms (Views: 5.2ms | Allocations: 2839)
+
+
+Started GET "/api/v1/posts" for ::1 at 2022-09-05 17:33:15 +0530
+Processing by Api::V1::PostsController#index as */*
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:5:in `index'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:5:in `index'
+Completed 200 OK in 6ms (Views: 5.4ms | ActiveRecord: 0.6ms | Allocations: 1790)
+
+
+Started POST "/graphql" for ::1 at 2022-09-05 18:02:53 +0530
+  
+ActionController::RoutingError (No route matches [POST] "/graphql"):
+  
+Started GET "/" for ::1 at 2022-09-05 18:16:58 +0530
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HelloWorldController#index as HTML
+  Rendering layout layouts/hello_world.html.erb
+  Rendering hello_world/index.html.erb within layouts/hello_world
+  Rendered hello_world/index.html.erb within layouts/hello_world (Duration: 221.6ms | Allocations: 5991)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/hello_world.html.erb (Duration: 227.1ms | Allocations: 8029)
+Completed 200 OK in 320ms (Views: 256.8ms | ActiveRecord: 0.0ms | Allocations: 10609)
+
+
+Started GET "/api/v1/posts" for ::1 at 2022-09-05 18:16:59 +0530
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:5:in `index'
+Completed 200 OK in 21ms (Views: 17.6ms | ActiveRecord: 1.2ms | Allocations: 4918)
+
+
+Started POST "/graphql" for ::1 at 2022-09-05 18:26:58 +0530
+  
+ActionController::RoutingError (No route matches [POST] "/graphql"):
+  
